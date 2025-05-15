@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang=en>
+<head>
+<meta charset=UTF-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>VellyAI - Advanced Chat</title>
+<link rel="stylesheet" href="style.css">
+<script src=https://cdnjs.cloudflare.com/ajax/libs/marked/4.0.2/marked.min.js></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <div id="sidebar" class="sidebar glass-effect">
+        <div class="sidebar-header">
+            <h2 class="sidebar-title">Menu</h2>
+            <button id="sidebar-close" class="sidebar-close" aria-label="Close menu">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+        <div class="sidebar-tabs">
+            <button class="sidebar-tab active" data-tab="history">History</button>
+            <button class="sidebar-tab" data-tab="settings">Settings</button>
+        </div>
+        <div class="sidebar-content" id="history-tab">
+            <button id="new-chat-button" class="new-chat-button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5l0 14"></path><path d="M5 12l14 0"></path></svg>
+                New Chat
+            </button>
+            <ul class="history-list" id="history-list"></ul>
+        </div>
+        <div class="sidebar-content" id="settings-tab" style="display:none">
+            <div class="settings-section">
+                <label for="api-key-input" class="settings-label">Chutes.AI API Key</label>
+                <input type="password" id="api-key-input" class="settings-input" placeholder="Enter your Chutes.AI API Key">
+                <small style="color:var(--text-secondary); font-size: 0.75rem; margin-top: 0.25rem; display: block;">Your API key is stored locally in your browser.</small>
+            </div>
+            <div class="settings-section">
+                <label for="model-select" class="settings-label">AI Model</label>
+                <select id="model-select" class="settings-select">
+                    <option value="deepseek-ai/DeepSeek-V3-0324" selected>DeepSeek V3 0324</option>
+                </select>
+            </div>
+            <div class="settings-section">
+                <label for="ai-persona-input" class="settings-label">AI Persona (Bot's Full System Prompt)</label>
+                <textarea id="ai-persona-input" class="settings-textarea" placeholder="Enter the complete system prompt for the AI. If blank, the application's default persona (Velly) will be used. This will define the AI's personality, rules, and instructions."></textarea>
+                <small style="color:var(--text-secondary); font-size: 0.75rem; margin-top: 0.25rem; display: block;">This replaces the default system message entirely if filled.</small>
+            </div>
+            <div class="settings-section">
+                <label for="user-persona-input" class="settings-label">Your Persona (How AI sees you)</label>
+                <textarea id="user-persona-input" class="settings-textarea" placeholder="Describe yourself, your character, your role, or any relevant context about you that the AI should know. E.g., 'I am a curious space explorer named Captain Alex.'"></textarea>
+                <small style="color:var(--text-secondary); font-size: 0.75rem; margin-top: 0.25rem; display: block;">This text will be prepended to your messages to inform the AI.</small>
+            </div>
+            <button id="save-settings" class="settings-button">Save Settings</button>
+             <div class="settings-section" style="margin-top: 1.5rem;">
+                <h3 style="color: var(--secondary-color); margin-bottom: 0.5rem;">Legal Disclaimer</h3>
+                <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.4;">
+                    This chatbot runs entirely in your browser. No data is stored or sent to any server owned by this site.<br>
+                    The site owner is not responsible for the content generated or how the chatbot is used.<br>
+                    Use at your own risk.
+                </p>      
+            </div>
+        </div>
+    </div>
+
+    <div class="chat-container glass-effect">
+        <div class="chat-header">
+            <div class="header-content">
+                <button id="menu-button" class="header-button" aria-label="Open menu">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+                <div class="header-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-bot">
+                        <path d="M12 8V4H8"></path><rect width="16" height="12" x="4" y="8" rx="2"></rect><path d="M2 14h2"></path><path d="M20 14h2"></path><path d="M15 13v2"></path><path d="M9 13v2"></path>
+                    </svg>
+                </div>
+                <h1 id="chat-header-title" class="header-title">VellyAI</h1>
+            </div>
+            <div class="header-actions">
+                <button id="view-context-button" class="header-button" aria-label="View Context/Memory" title="View Context/Memory">
+                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-brain-cog">
+                        <path d="M12 2a4.5 4.5 0 0 0-4.5 4.5v.43a1.5 1.5 0 0 1-1.17 1.41A6.5 6.5 0 0 0 9.5 16v2.5a2.5 2.5 0 0 0 5 0V16a6.5 6.5 0 0 0 3.17-2.66 1.5 1.5 0 0 1-1.17-1.41V6.5A4.5 4.5 0 0 0 12 2Z"/><path d="M20.55 16.5A2.5 2.5 0 0 0 22 14a2.5 2.5 0 0 0-4 2.2c0 .45.12.88.32 1.25"/><path d="M18.5 9.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/><path d="M3.45 16.5A2.5 2.5 0 0 1 2 14a2.5 2.5 0 0 1 4 2.2c0 .45-.12.88-.32 1.25"/><path d="M5.5 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5Z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div id="chat-body" class="chat-body"></div>
+        <div id="typing-indicator-area"></div>
+        <div class="input-area">
+            <textarea id="message-input" class="input-field" placeholder="Type your message... (use -B, -P, -R for colors)" rows="1"></textarea>
+            <button id="send-button" class="send-button" aria-label="Send message" disabled>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-send-horizontal">
+                    <path d="m3 3 3 9-3 9 19-9Z"/><path d="M6 12h16"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+</div>
+
+<div id="context-modal" class="modal">
+    <div class="modal-content">
+        <span id="modal-close-button" class="modal-close">&times;</span>
+        <h2 class="modal-title">Current API Context</h2>
+        <div id="context-modal-body"></div>
+    </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
