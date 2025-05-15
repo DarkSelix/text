@@ -1,25 +1,25 @@
 :root {
-  --primary-color: #a855f7; /* Roxo vivo */
-  --primary-hover: #9333ea; /* Roxo mais escuro */
-  --primary-light: rgba(168, 85, 247, 0.1);
-  --secondary-color: #c084fc; /* Lilás claro */
-  --background-dark: #0b0b0d; /* Preto absoluto com leve azul */
-  --background-medium: #131320; /* Preto azulado */
-  --background-light: #1e1b2e; /* Roxo profundo */
-  --text-primary: #f4f4ff; /* Quase branco com toque lilás */
-  --text-secondary: #a3a3b5;
-  --text-tertiary: #6b7280;
-  --text-accent: var(--primary-color);
-  --border-color: #27243a;
-  --border-light: rgba(163, 163, 181, 0.12);
-  --danger-color: #f43f5e; /* Rosa avermelhado */
-  --success-color: #22c55e; /* Verde vibrante */
+    --primary-color: #8b5cf6; /* Purple */
+    --primary-hover: #7c3aed;
+    --primary-light: rgba(139, 92, 246, 0.1);
+    --secondary-color: #c4b5fd; /* Light Purple */
+    --background-dark: #0f172a; /* Deep Blue/Black */
+    --background-medium: #1e293b; /* Dark Slate */
+    --background-light: #334155; /* Medium Slate */
+    --text-primary: #f8fafc; /* Brighter White */
+    --text-secondary: #94a3b8; /* Medium Gray */
+    --text-tertiary: #64748b; /* Lighter Gray */
+    --text-accent: var(--primary-color);
+    --border-color: #334155;
+    --border-light: rgba(148, 163, 184, 0.12);
+    --danger-color: #f87171; /* Red */
+    --success-color: #10b981; /* Green */
 
-  /* RGBs atualizados */
-  --background-dark-rgb: 11, 11, 13;
-  --background-medium-rgb: 19, 19, 32;
-  --border-color-rgb: 39, 36, 58;
-  --primary-rgb: 168, 85, 247;
+    /* RGB versions */
+    --background-dark-rgb: 15, 23, 42;
+    --background-medium-rgb: 30, 41, 59;
+    --border-color-rgb: 51, 65, 85;
+    --primary-rgb: 139, 92, 246;
 
     --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     --font-mono: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
@@ -1204,135 +1204,4 @@ body {
         width: 90vw;
         max-width: none;
     }
-}
-
-/* Inputs, Textareas, Selects — full dark+roxo */
-input,
-textarea,
-select {
-  background-color: rgba(var(--background-dark-rgb), 0.95);
-  color: var(--text-primary);
-  border: 1px solid var(--border-light);
-  border-radius: var(--border-radius);
-  padding: 0.75rem 1rem;
-  font-size: 1rem;
-  transition: var(--transition-fast);
-  width: 100%;
-  box-sizing: border-box;
-  display: block;
-}
-
-textarea {
-  resize: vertical;
-  min-height: 100px;
-}
-
-select {
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  padding-right: 2.5rem;
-  background-image: url("data:image/svg+xml,%3Csvg fill='white' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 1rem center;
-  background-size: 1rem;
-}
-
-::placeholder {
-  color: var(--text-secondary);
-  opacity: 0.75;
-}
-
-/* Botões (tipo "Salvar configurações") */
-button {
-  background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
-  color: white;
-  border: none;
-  border-radius: var(--border-radius);
-  padding: 0.75rem 1.25rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: var(--transition-fast);
-  box-shadow: 0 2px 10px rgba(var(--primary-rgb), 0.25);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(var(--primary-rgb), 0.4);
-}
-
-/* Scrollbar escura personalizada */
-textarea::-webkit-scrollbar,
-input[type="text"]::-webkit-scrollbar,
-select::-webkit-scrollbar {
-  width: 8px;
-}
-
-textarea::-webkit-scrollbar-track,
-input[type="text"]::-webkit-scrollbar-track,
-select::-webkit-scrollbar-track {
-  background: rgba(var(--background-medium-rgb), 0.6);
-  border-radius: var(--border-radius);
-}
-
-textarea::-webkit-scrollbar-thumb,
-input[type="text"]::-webkit-scrollbar-thumb,
-select::-webkit-scrollbar-thumb {
-  background-color: var(--primary-color);
-  border-radius: var(--border-radius-sm);
-  border: 2px solid transparent;
-  background-clip: padding-box;
-}
-
-textarea::-webkit-scrollbar-thumb:hover,
-input[type="text"]::-webkit-scrollbar-thumb:hover,
-select::-webkit-scrollbar-thumb:hover {
-  background-color: var(--primary-hover);
-}
-
-/* Label bonitinha */
-label {
-  display: block;
-  margin-bottom: 0.5rem;
-  font-weight: 600;
-  color: var(--text-secondary);
-}
-
-/* Garante que a aba de configurações possa rolar */
-.settings-panel,
-.config-panel,
-.tab-content,
-.settings-body {
-  max-height: calc(100vh - 8rem);
-  overflow-y: auto;
-  padding-right: 0.5rem; /* espaço pra scrollbar */
-  scroll-behavior: smooth;
-}
-
-/* Scrollbar dark para divs também */
-.settings-panel::-webkit-scrollbar,
-.config-panel::-webkit-scrollbar,
-.tab-content::-webkit-scrollbar,
-.settings-body::-webkit-scrollbar {
-  width: 8px;
-}
-
-.settings-panel::-webkit-scrollbar-thumb,
-.config-panel::-webkit-scrollbar-thumb,
-.tab-content::-webkit-scrollbar-thumb,
-.settings-body::-webkit-scrollbar-thumb {
-  background-color: var(--primary-color);
-  border-radius: var(--border-radius-sm);
-  border: 2px solid transparent;
-  background-clip: padding-box;
-}
-
-.settings-panel::-webkit-scrollbar-thumb:hover,
-.config-panel::-webkit-scrollbar-thumb:hover,
-.tab-content::-webkit-scrollbar-thumb:hover,
-.settings-body::-webkit-scrollbar-thumb:hover {
-  background-color: var(--primary-hover);
 }
