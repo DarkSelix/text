@@ -1300,3 +1300,39 @@ label {
   font-weight: 600;
   color: var(--text-secondary);
 }
+
+/* Garante que a aba de configurações possa rolar */
+.settings-panel,
+.config-panel,
+.tab-content,
+.settings-body {
+  max-height: calc(100vh - 8rem);
+  overflow-y: auto;
+  padding-right: 0.5rem; /* espaço pra scrollbar */
+  scroll-behavior: smooth;
+}
+
+/* Scrollbar dark para divs também */
+.settings-panel::-webkit-scrollbar,
+.config-panel::-webkit-scrollbar,
+.tab-content::-webkit-scrollbar,
+.settings-body::-webkit-scrollbar {
+  width: 8px;
+}
+
+.settings-panel::-webkit-scrollbar-thumb,
+.config-panel::-webkit-scrollbar-thumb,
+.tab-content::-webkit-scrollbar-thumb,
+.settings-body::-webkit-scrollbar-thumb {
+  background-color: var(--primary-color);
+  border-radius: var(--border-radius-sm);
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+.settings-panel::-webkit-scrollbar-thumb:hover,
+.config-panel::-webkit-scrollbar-thumb:hover,
+.tab-content::-webkit-scrollbar-thumb:hover,
+.settings-body::-webkit-scrollbar-thumb:hover {
+  background-color: var(--primary-hover);
+}
