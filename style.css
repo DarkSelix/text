@@ -121,10 +121,11 @@ body {
     z-index: 10;
 }
 
+/* From previous centering solution */
 .header-content {
     display: flex;
     align-items: center;
-    overflow: hidden;
+    gap: 0.75rem; /* Adjust this value for desired space between icon and title */
 }
 
 .header-icon {
@@ -135,7 +136,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-right: 1rem;
+    /* margin-right: 1rem; */ /* <-- REMOVED THIS LINE */
     box-shadow: 0 2px 8px rgba(139, 92, 246, 0.25);
     flex-shrink: 0;
     transition: var(--transition-medium);
