@@ -1110,3 +1110,73 @@ body {
     .input-field { font-size: 0.9rem; }
     .sidebar.open { width: 90vw; max-width: none; }
 }
+
+/* --- Custom Scrollbar Styles --- */
+/* Works on WebKit-based browsers (Chrome, Safari, Edge, Opera) */
+
+/* For the whole scrollbar */
+::-webkit-scrollbar {
+    width: 10px; /* Width of vertical scrollbar */
+    height: 10px; /* Height of horizontal scrollbar */
+}
+
+/* For the scrollbar track (the path the scrollbar runs along) */
+::-webkit-scrollbar-track {
+    background: rgba(var(--background-dark-rgb), 0.5); /* Dark, slightly transparent track */
+    border-radius: 10px;
+}
+
+/* For the draggable scrolling handle (the thumb) */
+::-webkit-scrollbar-thumb {
+    background: var(--border-color); /* Using a slightly lighter dark gray */
+    border-radius: 10px;
+    border: 2px solid transparent; /* Creates padding around thumb */
+    background-clip: content-box; /* Ensures border doesn't overlap thumb color */
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: var(--text-tertiary); /* Lighter gray on hover */
+    background-clip: content-box;
+}
+
+/* For the corner where vertical and horizontal scrollbars meet (if applicable) */
+::-webkit-scrollbar-corner {
+    background: rgba(var(--background-dark-rgb), 0.5);
+}
+
+/* Apply to specific elements if needed, or rely on global styling */
+.sidebar-content::-webkit-scrollbar-track,
+.chat-body::-webkit-scrollbar-track,
+.code-block pre::-webkit-scrollbar-track,
+.modal-content::-webkit-scrollbar-track { /* If modal content overflows */
+    background: rgba(var(--background-medium-rgb), 0.3); /* Slightly different track for nested elements */
+}
+
+.sidebar-content::-webkit-scrollbar-thumb,
+.chat-body::-webkit-scrollbar-thumb,
+.code-block pre::-webkit-scrollbar-thumb,
+.modal-content::-webkit-scrollbar-thumb {
+    background: var(--background-light);
+}
+
+.sidebar-content::-webkit-scrollbar-thumb:hover,
+.chat-body::-webkit-scrollbar-thumb:hover,
+.code-block pre::-webkit-scrollbar-thumb:hover,
+.modal-content::-webkit-scrollbar-thumb:hover {
+    background: var(--text-secondary);
+}
+
+/* Slimmer scrollbars for textareas, if desired (can be tricky) */
+.settings-textarea::-webkit-scrollbar {
+    width: 8px;
+}
+.settings-textarea::-webkit-scrollbar-thumb {
+    background: var(--text-tertiary);
+}
+.settings-textarea::-webkit-scrollbar-thumb:hover {
+    background: var(--text-secondary);
+}
+.settings-textarea::-webkit-scrollbar-track {
+    background: rgba(var(--background-light-rgb), 0.5);
+}
