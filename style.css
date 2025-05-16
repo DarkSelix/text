@@ -117,7 +117,7 @@ body {
     align-items: center;
     justify-content: space-between;
     border-bottom: 1px solid var(--border-light);
-    position: relative;
+    position: center;
     z-index: 10;
 }
 
