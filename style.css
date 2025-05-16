@@ -1,14 +1,14 @@
 :root {
-    --primary-color: #ff0080; /* Purple */
-    --primary-hover: #c50066;
-    --primary-light: rgba(255, 0, 128, 0.1);
-    --secondary-color: #ffb3d1; /* Light Purple */
-    --background-dark: #0a0a0f; /* Deep Blue/Black */
-    --background-medium: #12121a; /* Dark Slate */
-    --background-light: #1b1b29; /* Medium Slate */
-    --text-primary: #e4e4ff; /* Brighter White */
-    --text-secondary: #9999aa; /* Medium Gray */
-    --text-tertiary: #666677; /* Lighter Gray */
+    --primary-color: #8b5cf6; /* Purple */
+    --primary-hover: #7c3aed;
+    --primary-light: rgba(139, 92, 246, 0.1);
+    --secondary-color: #c4b5fd; /* Light Purple */
+    --background-dark: #0f172a; /* Deep Blue/Black */
+    --background-medium: #1e293b; /* Dark Slate */
+    --background-light: #334155; /* Medium Slate */
+    --text-primary: #f8fafc; /* Brighter White */
+    --text-secondary: #94a3b8; /* Medium Gray */
+    --text-tertiary: #64748b; /* Lighter Gray */
     --text-accent: var(--primary-color);
     --border-color: #334155;
     --border-light: rgba(148, 163, 184, 0.12);
@@ -1204,68 +1204,4 @@ body {
         width: 90vw;
         max-width: none;
     }
-}
-
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
-}
-
-::-webkit-scrollbar-track {
-  background: rgba(20, 20, 30, 0.4);
-  border-radius: 8px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(135deg, #ff0080, #c50066);
-  border-radius: 8px;
-  border: 2px solid #0a0a0f;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(135deg, #ff3399, #d11a7a);
-}
-
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(12px) scale(0.98);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-@keyframes fadeOut {
-  from {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-  to {
-    opacity: 0;
-    transform: translateY(-10px) scale(0.95);
-  }
-}
-
-@keyframes fadeInMenu {
-  from {
-    opacity: 0;
-    transform: translateY(-8px) scale(0.95);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-@keyframes typingBounce {
-  0%, 80%, 100% {
-    transform: translateY(0);
-  }
-  40% {
-    transform: translateY(-5px);
-  }
 }
